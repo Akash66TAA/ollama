@@ -1,0 +1,4 @@
+Ollama is a lightweight framework that allows developers to run and interact with large language models (LLMs) locally on their computer.
+It provides an easy-to-use interface to load, manage, and chat with AI models like Llama 2, Mistral, Qwen, Gemma, and others — without requiring cloud access.
+Ollama acts as a local model server, enabling users to run AI applications privately and efficiently through a simple API or command-line interface.
+
