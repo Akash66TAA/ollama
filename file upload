@@ -1,0 +1,24 @@
+import gradio as gr
+import ollama
+
+# Function to process uploaded document
+def analyze_document(file):
+    with open(file.name, "r", errors="ignore") as f:
+        content = f.read()
+
+    # Ask Ollama model to summarize or analyze the content
+    prompt = f"Analyze the following document and summarize its key points:\n\n{content}"
+    response = ollama.chat(model="qwen2.5:0.5b", messages=[{"role": "user", "content": prompt}])
+
+    return response['message']['content']
+
+# Gradio interface
+app = gr.Interface(
+    fn=analyze_document,
+    inputs=gr.File(label="Upload your document (txt/pdf/resume etc.)"),
+    outputs=gr.Textbox(label="AI Analysis / Summary"),
+    title="AI Document Analyzer",
+    description="Upload a document to get summary or analysis using Ollama (qwen2.5:0.5b)"
+)
+
+app.launch()
