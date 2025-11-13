@@ -1,0 +1,18 @@
+import gradio as gr
+import ollama
+
+def travel_chat(location_interest):
+    prompt = f"Recommend travel destinations based on these interests:\n\n{location_interest}"
+    response = ollama.chat(model="qwen2.5:0.5b", messages=[
+        {"role": "user", "content": prompt}
+    ])
+    return response['message']['content']
+
+iface = gr.Interface(
+    fn=travel_chat,
+    inputs=gr.Textbox(label="Enter your travel interests"),
+    outputs="text",
+    title="Tourism Recommendation Chatbot"
+)
+
+iface.launch()
